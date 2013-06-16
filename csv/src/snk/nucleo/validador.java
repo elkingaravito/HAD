@@ -20,8 +20,16 @@ import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
  
+/**
+ */
 public class validador {
 	public List<String[]> myEntries;
+    /**
+     * Constructor for validador.
+     * @param adr String
+     * @param fileName String
+     * @throws IOException
+     */
     public validador(String adr, String fileName) throws IOException {
 		File fileIn = new File(adr);
     	CSVReader reader = new CSVReader(new FileReader(adr),';');
@@ -40,15 +48,15 @@ public class validador {
 	    PrintWriter salida = new PrintWriter(bw);
 	    InputStreamReader archivo = new InputStreamReader(new FileInputStream(fileIn));
 	    
-		salida.print("<html><head><title>Validación archivo "+fileIn.getName()+"</title></head>");
+		salida.print("<html><head><title>Validaci?n archivo "+fileIn.getName()+"</title></head>");
 		salida.print("<body>");
 		salida.print("Archivo: "+adr+"<br><br>");
-		salida.print("Codificación: "+archivo.getEncoding()+"<br><br>");
+		salida.print("Codificaci?n: "+archivo.getEncoding()+"<br><br>");
 		salida.print(getSize(adr));
-		salida.print("Número de filas: "+getRows(matrix)+"<br><br>");
+		salida.print("N?mero de filas: "+getRows(matrix)+"<br><br>");
 		salida.print("Filas vacias: "+getEmpty(matrix)+"<br><br>");
 		System.out.print("1");
-		salida.print("Número de columnas: "+getColumns(matrix)+"<br>");
+		salida.print("N?mero de columnas: "+getColumns(matrix)+"<br>");
 		System.out.print("2");
 		salida.print("<table border='1px'><tr><td>Nombres de columnas</td><td>"+columnNames(matrix).replaceAll(",", "</td><td>")+"</td></tr>");
 		int cuenta=0;
@@ -86,6 +94,11 @@ public class validador {
     	reader.close();
     	matrix.clear();
     }
+	/**
+	 * Method viewCSV.
+	 * @param matrix List<String[]>
+	 * @throws IOException
+	 */
 	public void viewCSV(List<String[]> matrix) throws IOException {
 	    ArrayList<String> listaColumna = new ArrayList();
 		for(int j=0;j<matrix.get(0).length;j++){
@@ -97,6 +110,12 @@ public class validador {
 	    	listaColumna.clear();
 	    }
 	}
+	/**
+	 * Method getCoding.
+	 * @param adr String
+	 * @return String
+	 * @throws IOException
+	 */
 	public String getCoding(String adr) throws IOException{
 		String codigo=null;
     	InputStreamReader archivo = new InputStreamReader(new FileInputStream(new File(adr)));
@@ -104,20 +123,35 @@ public class validador {
 		archivo.close();
 		return codigo;
 	}
+	/**
+	 * @param adr
+	
+	 * @return String
+	 */
 	public String getSize(String adr){
 		File archivo=new File(adr);
 		long size=archivo.length();
 		double valorBytes=size;
 		double fileSizeInKB = valorBytes/ 1024;
 		double fileSizeInMB = fileSizeInKB / 1024;
-		String tamano="Tamaño <br>Bytes: "+valorBytes+" <br>KBytes: "+fileSizeInKB+" <br>MBytes: "+fileSizeInMB+"<br><br>";
+		String tamano="Tama?o <br>Bytes: "+valorBytes+" <br>KBytes: "+fileSizeInKB+" <br>MBytes: "+fileSizeInMB+"<br><br>";
 		return tamano;
 				
 	}
+	/**
+	 * Method getRows.
+	 * @param matrix List<String[]>
+	 * @return String
+	 */
 	public String getRows(List<String[]> matrix){
 		int rows=matrix.size();
 		return rows+"";
 	}
+	/**
+	 * Method getEmpty.
+	 * @param matrix List<String[]>
+	 * @return String
+	 */
 	public String getEmpty(List<String[]> matrix){
 		String rows = "";
 		int i=0,row1=0;
@@ -133,9 +167,19 @@ public class validador {
 	    }
 		return rows;
 	}
+	/**
+	 * Method getColumns.
+	 * @param matrix List<String[]>
+	 * @return String
+	 */
 	public String getColumns(List<String[]> matrix){
 		return matrix.get(0).length+"";
 	}
+	/**
+	 * Method columnNames.
+	 * @param matrix List<String[]>
+	 * @return String
+	 */
 	public String columnNames(List<String[]> matrix){
 		String fila="";
 		for(String celda:matrix.get(0)){
@@ -143,12 +187,17 @@ public class validador {
 		}
 		return fila;
 	}
+	/**
+	 * Method dataType.
+	 * @param matrix List<String[]>
+	 * @return int[][]
+	 */
 	public int[][] dataType(List<String[]> matrix){
 		String filas="";
 		Pattern pattern;
 		Matcher mattcher;
 		int[][] porcentaje=new int[2][matrix.get(0).length];
-		String[] expresionReg={"^[A-Za-zÁÉÍÓÚáéíóúüñÑ\\s]*$","^[\\d]*$"},tipoDato={"Alfabetico","Numerico"};
+		String[] expresionReg={"^[A-Za-z?????????????\\s]*$","^[\\d]*$"},tipoDato={"Alfabetico","Numerico"};
 	    for(String[] fila:matrix){
 			for(int contador=0;contador<2;contador++){
 				pattern = Pattern.compile(expresionReg[contador]);
@@ -162,6 +211,11 @@ public class validador {
 	    }
 		return porcentaje;
 	}
+	/**
+	 * Method longMax.
+	 * @param matrix List<String[]>
+	 * @return int[]
+	 */
 	public int[] longMax(List<String[]> matrix){
 		int size[] = new int[matrix.get(0).length];
 		for(int j=0;j<matrix.get(0).length;j++){
