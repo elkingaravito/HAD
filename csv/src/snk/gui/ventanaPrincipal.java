@@ -23,6 +23,8 @@ import java.io.IOException;
 import snk.nucleo.MyFrame;
 import snk.nucleo.validador;
 
+/**
+ */
 public class ventanaPrincipal {
 
 	private JFrame frmValidacion;
@@ -34,6 +36,7 @@ public class ventanaPrincipal {
 
 	/**
 	 * Launch the application.
+	 * @param args String[]
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -91,7 +94,7 @@ public class ventanaPrincipal {
 		});
 		frmValidacion.getContentPane().add(lblArchivo, BorderLayout.EAST);
 		lblArchivo.setSize(10,10);
-		JLabel lblTitulo = new JLabel("Herramienta de Análisis de Archivos");		
+		JLabel lblTitulo = new JLabel("Herramienta de An?lisis de Archivos");		
 		JLabel lblNewLabel = new JLabel("Archivo:");
 		frmValidacion.getContentPane().add(lblTitulo, BorderLayout.WEST);
 		frmValidacion.getContentPane().add(lblNewLabel, BorderLayout.WEST);
@@ -107,6 +110,10 @@ public class ventanaPrincipal {
 		frmValidacion.getContentPane().add(rigidArea_1, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * Method getLblArchivo.
+	 * @return JButton
+	 */
 	public JButton getLblArchivo() {
 		return lblArchivo;
 	}

@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ */
 public class HAD extends JFrame {
 
 	/**
@@ -30,6 +32,7 @@ public class HAD extends JFrame {
 
 	/**
 	 * Launch the application.
+	 * @param args String[]
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
